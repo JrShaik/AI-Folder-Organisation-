@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Organised Files</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="background">
+
+<div class="app">
+
+    <header>
+
+        <div class="logo">
+            🤖
+        </div>
+
+        <div>
+
+            <h1>
+                AI Folder Organisation
+            </h1>
+
+            <p>
+                Organisation completed successfully
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <div class="welcome">
+
+            <h2>
+                🎉 Your Files Are Organised!
+            </h2>
+
+            <p>
+                The system automatically categorised
+                your files into the following folders.
+            </p>
+
+        </div>
+
+
+        <div class="results">
+
+            {% for category, files in organised_files.items() %}
+
+            <div class="folder-card">
+
+                <div class="folder-title">
+
+                    {% if category == "Documents" %}
+                        📄
+                    {% elif category == "Images" %}
+                        🖼️
+                    {% elif category == "Videos" %}
+                        🎬
+                    {% elif category == "Audio" %}
+                        🎵
+                    {% else %}
+                        📦
+                    {% endif %}
+
+                    <strong>
+                        {{ category }}
+                    </strong>
+
+                    <span>
+                        {{ files|length }} files
+                    </span>
+
+                </div>
+
+
+                <div class="file-list">
+
+                    {% for filename in files %}
+
+                    <a
+                        href="{{ url_for(
+                            'open_file',
+                            category=category,
+                            filename=filename
+                        ) }}"
+                        target="_blank">
+
+                        📄 {{ filename }}
+
+                    </a>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <a
+            href="/"
+            class="back-btn">
+
+            ← Organise Another Folder
+
+        </a>
+
+    </main>
+
+
+    <footer>
+
+        ✅ Organisation completed successfully
+
+    </footer>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

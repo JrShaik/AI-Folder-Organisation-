@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Folder Organisation</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="background">
+
+    <div class="app">
+
+        <header>
+
+            <div class="logo">
+                🤖
+            </div>
+
+            <div>
+
+                <h1>AI Folder Organisation</h1>
+
+                <p>
+                    Organise your files intelligently with AI
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <main>
+
+            <div class="welcome">
+
+                <h2>
+                    Organise Your Files ✨
+                </h2>
+
+                <p>
+                    Select a folder and let our intelligent
+                    system categorise your files automatically.
+                </p>
+
+            </div>
+
+
+            <form
+                action="/organise"
+                method="POST"
+                enctype="multipart/form-data">
+
+                <div class="upload-area">
+
+                    <div class="upload-icon">
+                        📁
+                    </div>
+
+                    <h3>
+                        Select Your Folder
+                    </h3>
+
+                    <p>
+                        Choose a folder containing the files
+                        you want to organise.
+                    </p>
+
+
+                    <input
+                        type="file"
+                        id="folderInput"
+                        name="files"
+                        webkitdirectory
+                        multiple
+                        hidden>
+
+
+                    <button
+                        type="button"
+                        class="select-btn"
+                        onclick="document.getElementById('folderInput').click()">
+
+                        📂 Choose Folder
+
+                    </button>
+
+
+                    <p
+                        id="fileInfo"
+                        class="file-info">
+
+                        No folder selected
+
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="organise-btn">
+
+                    ✨ Organise with AI
+
+                </button>
+
+            </form>
+
+
+            <div class="categories">
+
+                <div class="category documents">
+
+                    📄
+
+                    <span>
+                        Documents
+                    </span>
+
+                </div>
+
+
+                <div class="category images">
+
+                    🖼️
+
+                    <span>
+                        Images
+                    </span>
+
+                </div>
+
+
+                <div class="category videos">
+
+                    🎬
+
+                    <span>
+                        Videos
+                    </span>
+
+                </div>
+
+
+                <div class="category others">
+
+                    📦
+
+                    <span>
+                        Others
+                    </span>
+
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <footer>
+
+            🔒 Files are processed locally by this Flask application
+
+        </footer>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const folderInput =
+    document.getElementById("folderInput");
+
+const fileInfo =
+    document.getElementById("fileInfo");
+
+
+folderInput.addEventListener(
+    "change",
+    function () {
+
+        const files = folderInput.files;
+
+        if (files.length === 0) {
+
+            fileInfo.innerText =
+                "No folder selected";
+
+        } else {
+
+            fileInfo.innerText =
+                files.length +
+                " files selected 📁";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
